@@ -2,46 +2,34 @@ extends layout
 
 block layout-content
     .View
-        nav
-            ul
-                li
-                    a(href="") ONE
-                    ul
-                        li
-                            a(href="") SUB A
-                        li
-                            a(href="") SUB B
-                        li
-                            a(href="") SUB C
-                        li
-                            a(href="") SUB D
-                            ul
-                                li
-                                    a(href="") SUB D 1
-                                li
-                                    a(href="") SUB D 2
-                                li
-                                    a(href="") SUB D 3
-                                    ul
-                                        li
-                                            a(href="") SUB A
-                                        li
-                                            a(href="") SUB B
-                                        li
-                                            a(href="") SUB C
-                                        li
-                                            a(href="") SUB D
-                                li
-                                    a(href="") SUB D 4
-              
-                li
-                    a(href="") TWO
-                    ul
-                        li
-                            a(href="") SUB A
-                        li
-                            a(href="") SUB B
-                        li
-                            a(href="") SUB C
-                        li
-                            a(href="") SUB D
+        table(style='width:fit-content', border='1')
+            tr
+                th Index
+                th ID
+                th Date
+                th Number of Cases
+                th Number of Deaths
+                th Country Name (FR)
+                th Country name (EN)
+            for record in model.records
+                tr
+                    td= count++
+                    td= record.id
+                    td= record.date
+                    td= record.cases
+                    td= record.deaths
+                    td= record.nameFR
+                    td= record.nameEN
+                    td(style='display: flex; flex-direction: row')
+                        form(action="/edit" method="POST")
+                            input(type="hidden" name="counter" id="counter" value=count)
+                            input(type="submit" name="Edit" value="Edit")
+                        form(action="/delete" method="POST")
+                            input(type="hidden" name="counter" id="counter" value=count)
+                            input(type="submit" name="Delete" value="Delete")
+            
+
+            
+
+
+        

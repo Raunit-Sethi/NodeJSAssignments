@@ -137,6 +137,15 @@ function deleteRecord(number){
     }
 }
 
+function expressEdit(row,id,date,cases,deaths,fr,en){
+    records[row-2].id = id;
+    records[row-2].date = date;
+    records[row-2].cases = cases;
+    records[row-2].deaths = deaths;
+    records[row-2].nameFR = fr;
+    records[row-2].nameEN = en;
+}
+
 /**
  * Export module to export functiosns
  */
@@ -147,5 +156,6 @@ module.exports = {
     createRecord, 
     editRecord,
     deleteRecord,
+    expressEdit,
     records
 };
