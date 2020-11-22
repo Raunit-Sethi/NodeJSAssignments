@@ -1,0 +1,23 @@
+extends layout
+
+block layout-content
+    .View.FormView
+        table(id="formHead")
+            tr
+                th #{cf}
+        br
+        form(action=formType method="POST")
+            p ID:
+                input(type="text" id="id" name="id" placeholder=(ex+model.records[0].id) value=record.id required)
+            p Date:
+                input(type="text" id="date" name="date" placeholder=ex+model.records[0].date value=record.date required)
+            p Cases:
+                input(type="text" id="cases" name="cases" placeholder=ex+model.records[0].cases value=record.cases required)
+            p Deaths:
+                input(type="text" id="deaths" name="deaths" placeholder=ex+model.records[0].deaths value=record.deaths required)
+            p NameFR:
+                input(type="text" id="fr" name="fr" placeholder=ex+model.records[0].fr value=record.nameFR required)
+            p NameEN:
+                input(type="text" id="en" name="en" placeholder=ex+model.records[0].en value=record.nameEN required)
+            input(type="submit" name="Submit" value="Submit")
+        

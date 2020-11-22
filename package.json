@@ -4,13 +4,21 @@
   "description": "",
   "main": "Mid.js",
   "dependencies": {
-    "prompt-sync": "^4.2.0"
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "prompt-sync": "^4.2.0",
+    "pug": "^3.0.0"
   },
   "devDependencies": {
-    "jest": "^26.5.3"
+    "browser-sync": "^2.26.13",
+    "jest": "^26.5.3",
+    "nodemon": "^2.0.6"
   },
   "scripts": {
-    "dev": "start npm run origin && start npm test",
+    "dev": "start npm run desynced && start npm run synced",
+    "synced": "browser-sync start --config bs-config.js",
+    "desynced": "nodemon ./index.js",
+    "dev2": "start npm run origin && start npm test",
     "origin": "node mid",
     "test": "jest"
   },

@@ -1,0 +1,35 @@
+extends layout
+
+block layout-content
+    .View
+        table(style='width:fit-content', border='1')
+            tr
+                th Index
+                th ID
+                th Date
+                th Number of Cases
+                th Number of Deaths
+                th Country Name (FR)
+                th Country name (EN)
+            for record in model.records
+                tr
+                    td= count++
+                    td= record.id
+                    td= record.date
+                    td= record.cases
+                    td= record.deaths
+                    td= record.nameFR
+                    td= record.nameEN
+                    td(style='display: flex; flex-direction: row')
+                        form(action="/edit" method="POST")
+                            input(type="hidden" name="counter" id="counter" value=count)
+                            input(type="submit" name="Edit" value="Edit")
+                        form(action="/delete" method="POST")
+                            input(type="hidden" name="counter" id="counter" value=count)
+                            input(type="submit" name="Delete" value="Delete")
+            
+
+            
+
+
+        
