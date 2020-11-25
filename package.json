@@ -15,11 +15,11 @@
     "nodemon": "^2.0.6"
   },
   "scripts": {
-    "dev": "start npm run desynced && start npm run synced",
+    "express": "start npm run desynced && start npm run synced",
     "synced": "browser-sync start --config bs-config.js",
     "desynced": "nodemon ./index.js",
     "dev2": "start npm run origin && start npm test",
-    "origin": "node mid",
+    "console": "node mid",
     "test": "jest"
   },
   "author": "Raunit Sethi",

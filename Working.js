@@ -146,11 +146,20 @@ function expressEdit(row,id,date,cases,deaths,fr,en){
     records[row-2].nameEN = en;
 }
 
+function initAllRecords(data){
+    records.splice(0,records.length);
+    for(var i = 0; i< data.length; i++){
+        if(i != 0)
+            records[i-1] = new Record(data[i]);
+    }
+}
+
 /**
  * Export module to export functiosns
  */
 module.exports = {
     initRecords, 
+    initAllRecords,
     readCSV, 
     writeCSV, 
     createRecord, 
