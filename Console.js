@@ -54,6 +54,15 @@ function requestRecordNumber(){
     console.log('Enter record number');
 }
 
+function recordDeleted(){
+    console.log("Record Deletion Complete.");
+    console.log();
+}
+
+function recordNotDeleted(){
+    console.log("Record Deletion Failed.");
+    console.log();
+}
 /**
  * Export module to export functions
  */
@@ -62,5 +71,7 @@ module.exports = {
     displayName, 
     displayRecords,
     displayRecord,
-    requestRecordNumber
+    requestRecordNumber,
+    recordDeleted,
+    recordNotDeleted
 };

@@ -1,0 +1,33 @@
+extends layout
+
+block layout-content
+    .View.OptionsView
+        h1 Create a Bar Graph
+        br
+        h3 Select the columns to use as data for the bar graph you want to generate:
+        form(action="/generate" method="POST")
+            table
+                tr
+                    td Country Code/French Name/English Name
+                    td 
+                        input(type="radio" name="option" id="country" value="country" required)
+                tr
+                    td Date
+                    td
+                        input(type="radio" name="option" id="date" value="date" required)
+                tr
+                    td Number of Cases
+                    td 
+                        input(type="radio" name="option" id="cases" value="cases" required)
+                tr
+                    td Number of Deaths
+                    td 
+                        input(type="radio" name="option" id="deaths" value="deaths" required)    
+            
+            table
+                tr
+                    th
+                        input(type="submit" name="Submit" value="Submit")
+                    th
+                        a(href="/" id="cancel") Cancel
+                

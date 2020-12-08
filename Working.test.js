@@ -11,7 +11,7 @@ var length;
  */
 beforeEach(()=> {
     ts.createRecord("1","2","3","4","5","6");
-    recToDelete = ts.records[0].toString();
+    recToDelete = ts.records[0];
     length = ts.records.length;
 })
 
