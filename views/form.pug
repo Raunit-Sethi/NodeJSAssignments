@@ -8,16 +8,21 @@ block layout-content
         br
         form(action=formType method="POST")
             p ID:
-                input(type="text" id="id" name="id" placeholder=(ex+model.records[0].id) value=record.id required)
+                input(type="text" id="id" name="id" placeholder=(ex+recExample.id) value=record.id required)
             p Date:
-                input(type="text" id="date" name="date" placeholder=ex+model.records[0].date value=record.date required)
+                input(type="text" id="date" name="date" placeholder=(ex+recExample.date) value=record.date required)
             p Cases:
-                input(type="text" id="cases" name="cases" placeholder=ex+model.records[0].cases value=record.cases required)
+                input(type="text" id="cases" name="cases" placeholder=ex+recExample.cases value=record.cases required)
             p Deaths:
-                input(type="text" id="deaths" name="deaths" placeholder=ex+model.records[0].deaths value=record.deaths required)
+                input(type="text" id="deaths" name="deaths" placeholder=ex+recExample.deaths value=record.deaths required)
             p NameFR:
-                input(type="text" id="fr" name="fr" placeholder=ex+model.records[0].nameFR value=record.nameFR required)
+                input(type="text" id="fr" name="fr" placeholder=ex+recExample.nameFR value=record.nameFR required)
             p NameEN:
-                input(type="text" id="en" name="en" placeholder=ex+model.records[0].nameEN value=record.nameEN required)
-            input(type="submit" name="Submit" value="Submit")
+                input(type="text" id="en" name="en" placeholder=ex+recExample.nameEN value=record.nameEN required)
+            table
+                tr
+                    td
+                        input(type="submit" name="Submit" value="Submit")
+                    td
+                        a(href="/" id="cancel") Cancel
         

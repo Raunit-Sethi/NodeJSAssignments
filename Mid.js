@@ -6,6 +6,7 @@
 var prompt = require('prompt-sync')();
 var model = require("./Working.js");
 var view = require("./Console.js");
+const { recordDeleted, recordNotDeleted } = require('./Console.js');
 var choice="";
 model.initRecords(model.readCSV());
 while(choice!='X' && choice!='x'){
@@ -44,12 +45,18 @@ while(choice!='X' && choice!='x'){
         case '6':
             view.requestRecordNumber();
             var number = prompt();
-            model.deleteRecord(number);
+            if(model.deleteRecord(number)!=undefined)
+                recordDeleted();
+            else
+                recordNotDeleted();
             break;
         case '7':
             view.displayName();
             view.displayRecords(model.records);
         case 'x':
+            break;
+        case '8':
+            model.tester();
             break;
         default:
             console.log("Wrong input; Try again");

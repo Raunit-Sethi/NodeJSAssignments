@@ -1,5 +1,5 @@
 *{
-  box-sizing: border-box;
+  /* box-sizing: border-box; */
   font-family: 'Passion One', sans-serif;
   font-weight: 400;
 }
@@ -38,32 +38,13 @@ nav > ul:after{
   content: '';
   clear: both;
 }
-/* 
-nav > ul ul{
-  position: absolute;
-  visibility: hidden;
-}
-
-nav ul li:hover > ul {
-  visibility: visible;
-}
-  
-nav ul ul li{
-  position: relative;
-} */
-  
-/* nav ul ul ul{
-  position: absolute;
-  top: 0;
-  left: 100%;
-} */
 
 input[type=submit] {
   display: flex;
   justify-content: center;
   align-items: center;
 
-  
+  cursor:pointer;
 
   background: #fa4141;
 
@@ -72,11 +53,27 @@ input[type=submit] {
   font-size: 15px;
   font-weight: bold;
   color: white;
-
   text-transform: capitalize;
+}
 
-  /* border-bottom: var(--ui-shadow-border);
-  box-shadow: var(--ui-shadow); */
+#cancel {
+  margin-left: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  cursor:pointer;
+
+  background: #fa4141;
+
+  border-radius: 30px;
+
+  font-size: 15px;
+  font-weight: bold;
+  color: white;
+  text-transform: capitalize;
+  height: 55px;
+  width: 150px;
 }
 
 input{
@@ -96,4 +93,14 @@ input[value=Edit], input[value=Delete]{
   margin-top: 20px;
   border: 3px solid black;
   font-size: 30px;
+}
+
+#box{
+  margin-top: 20px;
+  border: 3px solid black;
+  font-size: 30px;
+}
+iframe{
+  width: 100%;
+  height: 50em;
 }

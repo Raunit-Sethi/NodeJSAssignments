@@ -8,6 +8,9 @@
  * @description container for the loaded File System module 
 */
 var fs = require("fs");
+const { resolve } = require("path");
+const util = require("util");
+var plotly = require('plotly')("RaunitSethi","LrwLfohXrvnmawOJONOi");
 
 /** 
  * @type {String[]}
@@ -60,7 +63,7 @@ function initRecords(data){
 function readCSV(){
     var data;
     try{
-        data = fs.readFileSync('./InternationalCovid19Cases.csv').toString().split("\n");
+        data = fs.readFileSync('./InternationalCovid19Cases.csv').toString().split("\r\n");
         return data;
     }
     catch (err){
@@ -128,9 +131,7 @@ function editRecord(number){
 function deleteRecord(number){
     try{
         var record = records.splice(number-1,1);
-        console.log("Record Deletion Complete.");
-        console.log();
-        return record[0].toString();
+        return record[0];
     }
     catch(err){
         if(err) throw err;
@@ -154,6 +155,79 @@ function initAllRecords(data){
     }
 }
 
+function recordsForGraph(){
+    var recs = readCSV();
+    var allRecords=[];
+    var j = 0;
+    for(var i = 101; i<recs.length; i++){
+        allRecords[j++] = new Record(recs[i]); 
+    }
+    return records.concat(allRecords);
+}
+
+function generateGraph(option){
+    var data = {
+        x: [],
+        y: [],
+        type: "bar"
+    }
+    var allRecords = recordsForGraph();
+    var coll = [];
+    switch(option){
+        case "country":
+            for(i=0;i<allRecords.length;i++){
+                coll[i] = allRecords[i].nameEN;
+            }
+        break;
+        case "date":
+            for(i=0;i<allRecords.length;i++){
+                coll[i] = allRecords[i].date;
+            }
+        break;
+        case "cases":  
+            for(i=0;i<allRecords.length;i++){
+                coll[i] = allRecords[i].cases;
+            }
+        break;
+        case "deaths":
+            for(i=0;i<allRecords.length;i++){
+                coll[i] = allRecords[i].deaths;
+            }
+        break;
+        default:
+            return null;
+        break;
+
+    }
+    coll.sort();
+    data.x  = coll.filter((value, index, self) => {
+        return self.indexOf(value) === index;
+    });
+    var j =0, count = 0, con = coll[0];
+    for(i=0;i<coll.length;i++){
+        if(con == coll[i]){
+            count++;
+        }
+        else{
+            data.y[j++] = count;
+            count=0;
+            con = coll[i];
+        }
+    }
+    return data;
+}
+
+function tester(){
+    var Promise = require('promise');
+    var graphOptions = {filename: "basic-bar", fileopt: "overwrite"};
+    var gen =  Promise.denodeify(plotly.plot);
+    gen(generateGraph("country"),graphOptions)
+    .then((msg,err) => {
+        if(err) throw err;
+        console.log(msg.url);
+    }).nodeify();
+}
+
 /**
  * Export module to export functiosns
  */
@@ -166,5 +240,8 @@ module.exports = {
     editRecord,
     deleteRecord,
     expressEdit,
+    recordsForGraph,
+    generateGraph,
+    tester,
     records
 };
